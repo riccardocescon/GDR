@@ -26,10 +26,10 @@ void delate_entity(int positioR,int positionC){
 	FillConsoleOutputCharacter ( handle,' ',1, coordinate, &cose);
 }
 
-void print_map(char *map, int R, int C){
+void print_map(char map[][100], int R, int C){
 	for (int r=0; r<R; r++){
 		for (int c=0; c<C; c++){
-			cout << map[r*C+c];
+			cout << map[r][c];
 		}
 		cout << endl;
 	}
