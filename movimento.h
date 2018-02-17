@@ -15,6 +15,9 @@ using namespace std;
 char get_button(){
 	kbhit();
 	char button = getch();
+	if (button < 97){
+		button=button+32;
+	}
 	return button;
 }
 		
