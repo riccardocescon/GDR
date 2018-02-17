@@ -15,12 +15,13 @@ class maps{
 		
 		int rows;
 		int cols;
-	void size(char lvl[][100], char corner){
+		
+	void size(char lvl[][100], char corner, int& R, int& C){
             for(int c=0; lvl[0][c] != corner; c++){
-    		  cols=c;
+    		  C=c+2;
     	    }
     	   for (int r=0; lvl[r][0] != corner; r++){
-    		  cols=r;
+    		  R=r+2;
     	   }
         }
 		

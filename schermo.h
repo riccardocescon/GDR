@@ -12,7 +12,7 @@
 
 using namespace std;
 
-void shift_entity(int positionR,int positionC, char skin){								
+/*void shift_entity(int positionR,int positionC, char skin){								
 	HANDLE handle = GetStdHandle ( STD_OUTPUT_HANDLE );
 	COORD coordinate = {positionR, positionC};
 	DWORD cose;
@@ -33,6 +33,6 @@ void print_map(char map[][100], int R, int C){
 		}
 		cout << endl;
 	}
-}
+}*/
 
 #endif
