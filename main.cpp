@@ -159,12 +159,12 @@ weapon shop_get_weapon(int x, int y){
 		if(y == 1){weapon spada_rotta={"Spada Rotta", 3, 30, 15, 5,"E' una spada rotta"};return spada_rotta;};
 		if(y == 2){weapon bastone={"Bastone", 2, 20, 10, 3,"E' un bastone di legno"};return bastone;};
 		if(y == 3){weapon frusta={"Frusta", 2, 40, 15, 5,"E' una frusta"};return frusta;};
-		if(y == 4){weapon wahaika={"Wahaika", 2.5, 40, 20, 7,"Gli antichi Maori utilizzavano lo Wahaika come pugnale, sebbene assomigli e venga considerata una clava. Ãˆ intagliato nel legno, oppure raramente nelle ossa di balena. "};return wahaika;};
+		if(y == 4){weapon wahaika={"Wahaika", 2.5, 40, 20, 7,"Gli antichi Maori utilizzavano lo Wahaika come pugnale, sebbene assomigli e venga considerata una clava. E' intagliato nel legno, oppure raramente nelle ossa di balena. "};return wahaika;};
 		if(y == 5){weapon manganello={"Manganello", 5, 50, 20, 8,"E' un'arma contundente"};return manganello;};
 		if(y == 6){weapon macana={"Makana", 6.5, 60, 30, 10,"E' un'arma simile ad una spada, fatta in legno, ma sufficientemente affilata da essere pericolosa"};return macana;};
-		if(y == 7){weapon kriss={"Kriss", 6, 50, 25, 8,"Il kriss Ã¨ un tipico coltello-pugnale malese,con lama a biscia "};return kriss;};
-		if(y == 8){weapon cinquedea={"Cinquedea", 6, 60, 20, 9,"La Cinquedea,Ã¨ un'arma bianca manesca del tipo spada corta originatasi nel XV secolo in area veneta"};return cinquedea;};
-		if(y == 9){weapon tonfa={"Tonfa", 5, 50, 15, 7, "l tonfa Ã¨ un'arma tradizionale delle arti marziali, Ãˆ composto da una impugnatura lunga 12 cm, e da un corpo di lunghezza variabile dai 50 ai 60 cm circa."};return tonfa;};
+		if(y == 7){weapon kriss={"Kriss", 6, 50, 25, 8,"Il kriss e' un tipico coltello-pugnale malese,con lama a biscia "};return kriss;};
+		if(y == 8){weapon cinquedea={"Cinquedea", 6, 60, 20, 9,"La Cinquedea e' un'arma bianca manesca del tipo spada corta originatasi nel XV secolo in area veneta"};return cinquedea;};
+		if(y == 9){weapon tonfa={"Tonfa", 5, 50, 15, 7, "La tonfa e' un'arma tradizionale delle arti marziali, e' composto da una impugnatura lunga 12 cm, e da un corpo di lunghezza variabile dai 50 ai 60 cm circa."};return tonfa;};
 		if(y == 10){weapon tirapugni={"Tirapugni", 8, 80, 40, 15, "Viene utilizzato sferrando pugni"};return tirapugni;};
 	}
 	if (x == 2){
@@ -174,45 +174,46 @@ weapon shop_get_weapon(int x, int y){
 		if(y == 3){weapon tridente={"Tridente", 11, 90, 50, 15, "Tridente, arma consigliata per attaccare a distanze di sicurezza"};return tridente;};
 		if(y == 4){weapon pugnale={"Pugnale", 9, 55, 20, 5,"Usalo per uccidere silenziosamente i nemici"};return pugnale;};
 		if(y == 5){weapon picca={"Picca", 11, 150, 50, 15,"Fatta per durare"};return picca;};
-		if(y == 6){weapon dagaarondelle={"Daga a rondelle", 10, 90, 20, 4,"Una daga a rondelle Ã¨ un pugnale originario dell'Europa del tardo medioevomolto diffuso e utilizzato da una gran varietÃ  di persone dai mercanti ai cavalieri."};return dagaarondelle;};
+		if(y == 6){weapon dagaarondelle={"Daga a rondelle", 10, 90, 20, 4,"Una daga a rondelle e' un pugnale originario dell'Europa del tardo medioevomolto diffuso e utilizzato da una gran varieta' di persone dai mercanti ai cavalieri."};return dagaarondelle;};
 		if(y == 7){weapon lancia={"Lancia", 10, 100, 15, 3,"Una lancia in legno, non troppo resistente, ma meglio di niente"};return lancia;};
-		if(y == 8){weapon ken={"Ken", 13, 120, 55, 50, "Ken Ã¨ il vocabologiapponese che identifica la spada a lama diritta, affilata su ambo i lati"};return ken;};
-		if(y == 9){weapon goloko={"Goloko", 11, 100, 45, 10, "Il golok Ã¨ un'arma da taglio simile ad un machete che puÃ² essere usato sia per lavori agricoli che come arma"};return goloko;};
-		if(y == 10){weapon hakapik={"Hakapik", 12, 110, 40, 5, "L'hakapik Ã¨ un bastone di invenzione norvegese usato nella caccia alla foca"};return hakapik;};
+		if(y == 8){weapon ken={"Ken", 13, 120, 55, 50, "Ken e' il vocabolo giapponese che identifica la spada a lama diritta, affilata su ambo i lati"};return ken;};
+		if(y == 9){weapon goloko={"Goloko", 11, 100, 45, 10, "Il golok e' un'arma da taglio simile ad un machete che puo' essere usato sia per lavori agricoli che come arma"};return goloko;};
+		if(y == 10){weapon hakapik={"Hakapik", 12, 110, 40, 5, "L'hakapik e' un bastone di invenzione norvegese usato nella caccia alla foca"};return hakapik;};
 	}
 	if (x == 3){
 		/*-----DAMAGE WEAPONS-----*/
-		if(y == 1){weapon katana={"Katana", 17, 220, 80, 20, "La katana Ã¨ la spada giapponese per antonomasia"};return katana;};
-		if(y == 2){weapon alabarda={"Alabarda", 18, 200, 80, 18, "L'alabarda Ã¨ l'arma inastata per antonomasia, a punta, tagliente da entrambi i lati."};return alabarda;};
-		if(y == 3){weapon azza={"Azza", 20, 250, 90, 25,"L'azza Ã¨ un'arma inastata diffusasi in Europa al volgere del Medioevo normalmente utilizzata dai soldati di fanteria e particolarmente adatta al combattimento contro avversari in armatura."};return azza;};
-		if(y == 4){weapon zweihander={"Zweihander", 21, 210, 90, 25, "La zweihÃ¤nder[ Ã¨ un tipo di spada a due mani sviluppatasi nel corso del Rinascimento in Italia e nelle terre gravitanti intorno al Sacro Romano Impero Germanico."};return zweihander;};
+		if(y == 1){weapon katana={"Katana", 17, 220, 80, 20, "La katana e' la spada giapponese per antonomasia"};return katana;};
+		if(y == 2){weapon alabarda={"Alabarda", 18, 200, 80, 18, "L'alabarda e' l'arma inastata per antonomasia, a punta, tagliente da entrambi i lati."};return alabarda;};
+		if(y == 3){weapon azza={"Azza", 20, 250, 90, 25,"L'azza e' un'arma inastata diffusasi in Europa al volgere del Medioevo normalmente utilizzata dai soldati di fanteria e particolarmente adatta al combattimento contro avversari in armatura."};return azza;};
+		if(y == 4){weapon zweihander={"Zweihander", 21, 210, 90, 25, "La zweihander e' un tipo di spada a due mani sviluppatasi nel corso del Rinascimento in Italia e nelle terre gravitanti intorno al Sacro Romano Impero Germanico."};return zweihander;};
 		if(y == 5){weapon martellodaguerra={"Martello da Guerra", 23, 150, 95, 20, "E' un martello molto pesante per sfondare crani"};return martellodaguerra;};
-		if(y == 6){weapon tetsubo={"Tetsubo", 23, 230, 100, 25, "Il tetsubo Ã¨ un'arma solitamente di legno molto simile a una Mazza da baseball, con l'eccezione che nella parte finale della mazza sono incastonate punte di metallo che possono essere di ferro, di rame " };return tetsubo;};
+		if(y == 6){weapon tetsubo={"Tetsubo", 23, 230, 100, 25, "Il tetsubo e' un'arma solitamente di legno molto simile a una Mazza da baseball, con l'eccezione che nella parte finale della mazza sono incastonate punte di metallo che possono essere di ferro, di rame " };return tetsubo;};
 		if(y == 7){weapon sarissa={"Sarissa", 17, 180, 70, 15, "La sarissa era la picca usata dai temuti guerrieri del regno di MacedoniaLunga fino a 6-7 metri, aveva corpo in legno di corniolo di grande diametro, una grossa punta di ferroe un tallone anch'essometallico."};return sarissa;};
 		if(y == 8){weapon berdica={"Berdica", 18, 190, 85, 15, "La berdica era un'arma inastata in uso in Europa Orientale. Era una g di circa un metro e mezzo e lama di scure a mezzaluna" };return berdica;};
-		if(y == 9){weapon falcione={"Falcione", 19, 190, 90, 14,"Il falcione Ã¨ una spada ad una mano con tagliente monofilare diffusasi in Europa durante il Medioevo."};return falcione;};
-		if(y == 10){weapon corsesca={"Corsesca", 17, 230, 85, 14, "La corsesca Ã¨ un'arma inastata in uso negli eserciti europei durante il Medioevo, con asta di lunghezza compresa tra gli 1,8 ed i 2,5 metri e testa in metallo"};return corsesca;};
+		if(y == 9){weapon falcione={"Falcione", 19, 190, 90, 14,"Il falcione e' una spada ad una mano con tagliente monofilare diffusasi in Europa durante il Medioevo."};return falcione;};
+		if(y == 10){weapon corsesca={"Corsesca", 17, 230, 85, 14, "La corsesca e' un'arma inastata in uso negli eserciti europei durante il Medioevo, con asta di lunghezza compresa tra gli 1,8 ed i 2,5 metri e testa in metallo"};return corsesca;};
 	}
 	if (x == 4){
 		/*-----DUNGEON WEAPONS-----*/
 		if(y == 1){weapon mazzaferrata={"Mazza Ferrata", 25, 250, 100, 27, "E' una mazza fatta di ferro"};return mazzaferrata;};
 		if(y == 2){weapon asciabipenne={"Ascia Bipenne", 23, 270, 105, 27, "Ascia a doppia lama"};return asciabipenne;};
 		if(y == 3){weapon martello={"Martello", 27, 180, 110, 28, "Martello da lavoro, molto potente ma poco resistente"};return martello;};
-		if(y == 4){weapon mazzafrusto={"Mazzafrusto", 24, 280, 100, 20, "Il mazzafrusto Ã¨ un'arma bianca di origine contadina." };return mazzafrusto;};
-		if(y == 5){weapon claymore={"Claymore", 25, 300, 120, 35, "Il termine in lingua inglese Claymore, indicadi spada usate dai guerrieri della Scozia tra Medioevo ed EtÃ  Moderna: 1-Claidheamh dha lamh (spada a due mani). 2-Claidheamh mÃ²r (grande spada)"};return claymore;};
-		if(y == 6){weapon dirk={"Dirk", 23, 250, 107, 24, "Il dirk Ã¨ un lungo pugnale di origine scozzese con la lama a un filo."};return dirk;};
-		if(y == 7){weapon kusarigama={"Kusarigama", 26, 275, 110, 23, "Il kusarigama Ã¨ un'arma giapponeseutilizzata sia nel combattimento adistanza che nel corpo a corpo"};return kusarigama;};
-		if(y == 8){weapon sai={"Sai", 23, 200, 90, 19, " La sua forma Ã¨ essenzialmente composta da una sorta di bastone arrotondato e appuntito, con due lunghe proiezioni non affilate attaccate al manico"};return sai;};
+		if(y == 4){weapon mazzafrusto={"Mazzafrusto", 24, 280, 100, 20, "Il mazzafrusto e' un'arma bianca di origine contadina." };return mazzafrusto;};
+		if(y == 5){weapon claymore={"Claymore", 25, 300, 120, 35, "Il termine in lingua inglese Claymore, indicadi spada usate dai guerrieri della Scozia tra Medioevo ed Eta' Moderna: 1-Claidheamh dha lamh (spada a due mani). 2-Claidheamh mor (grande spada)"};return claymore;};
+		if(y == 6){weapon dirk={"Dirk", 23, 250, 107, 24, "Il dirk e' un lungo pugnale di origine scozzese con la lama a un filo."};return dirk;};
+		if(y == 7){weapon kusarigama={"Kusarigama", 26, 275, 110, 23, "Il kusarigama e' un'arma giapponese utilizzata sia nel combattimento a distanza che nel corpo a corpo"};return kusarigama;};
+		if(y == 8){weapon sai={"Sai", 23, 200, 90, 19, " La sua forma e' essenzialmente composta da una sorta di bastone arrotondato e appuntito, con due lunghe proiezioni non affilate attaccate al manico"};return sai;};
 		if(y == 9){weapon falce={"Falce", 21, 245, 100, 21, "Falce da guerra indica una qualsiasi tipologia di arma bianca, manesca o inastata, ottenuta partendo dalla lama di una falce o di un falcetto." };return falce;};
-		if(y == 10){weapon mazzapesante={"Mazza Pesante", 25.5, 230, 110, 28, "Si tratta di una mazza molto pesante, il materiale di cui Ã¨ composta non Ã¨ noto."};return mazzapesante;};
+		if(y == 10){weapon mazzapesante={"Mazza Pesante", 25.5, 230, 110, 28, "Si tratta di una mazza molto pesante, il materiale di cui e' composta non e' noto."};return mazzapesante;};
 	}
 	if (x == 5){
 		/*-----SPECIAL WEAPONS-----*/
 		if(y == 1){weapon none={"No Weapon", 0, 0, 0, 0,"none"};return none;};
-		if(y == 2){weapon sodegarami={"Sodegarami", 24, 350, 200, 100, "Il sodegarami Ã¨ un'arma giapponese utilizzata soprattutto dalle forze di polizia samurai e per auto-difesa nel Giappone feudale."};return sodegarami;};
-		if(y == 3){weapon romfaia={"Romfaia", 35, 350, 300, 200, "Ãˆ costituita da una lama ricurva affilata sul lato interno e si poteva utilizzare sia con una impugnatura a una mano che con una a due mani. Il danno che procurava era inflitto con un movimento a strappo e poteva mutilare un arto e decapitare l'avversario anche con un solo colpo."};return romfaia;};
+		if(y == 2){weapon sodegarami={"Sodegarami", 24, 350, 200, 100, "Il sodegarami e' un'arma giapponese utilizzata soprattutto dalle forze di polizia samurai e per auto-difesa nel Giappone feudale."};return sodegarami;};
+		if(y == 3){weapon romfaia={"Romfaia", 35, 350, 300, 200, "E' costituita da una lama ricurva affilata sul lato interno e si poteva utilizzare sia con una impugnatura a una mano che con una a due mani. Il danno che procurava era inflitto con un movimento a strappo e poteva mutilare un arto e decapitare l'avversario anche con un solo colpo."};return romfaia;};
 	}
 }
+
 
 armor shop_get_armor(int x, int y){
 		armor none={"No Armor", 0, 0, 0, 0,"none"};
