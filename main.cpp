@@ -4,8 +4,128 @@
 #include <ctime>
 #include <time.h>
 #include <Windows.h>
+#include "map.h"
 
 using namespace std;
+
+class control{
+	public:
+		int pR;
+		int pC;
+		char button;
+		void back();
+		bool enemy(char arr[][100], int C, char e);
+		void wall(char arr[][100], int C, char wall);
+		void position(char lvl[][100], int& R, int& C, char entity, int& px, int& py);
+	protected:
+
+};
+
+char get_button(){
+	kbhit();
+	char button = getch();
+	if (button < 97){
+		button=button+32;
+	}
+	return button;
+}
+		
+void mov(int& pR, int& pC, char button){
+	switch(button){
+		case 'w':
+			pR--;
+			break;
+		case 's':
+			pR++;
+			break;
+		case 'a':
+			pC--;
+			break;
+		case 'd':
+			pC++;
+			break;
+	}
+}
+
+void control::back (){
+	switch(button){
+		case 'w':
+			pR++;
+			break;
+		case 's':
+			pR--;
+			break;
+		case 'a':
+			pC++;
+			break;
+		case 'd':
+			pC--;
+			break;
+	}
+}
+
+bool control::enemy (char arr[][100], int C, char enemy){
+	bool hit = false;
+   	if (arr[pR][pC] == enemy){
+		back();
+		hit = true;
+	}
+	return hit;
+}
+
+void control::wall (char arr[][100], int C, char wall){						   
+	if (arr[pR][pC]==wall){
+		back();
+	}
+}
+
+void control::position (char lvl[][100], int& R, int& C, char entity, int& px, int& py){
+	for (int r=0; r<R; r++){
+		for (int c=0; c<C; c++){
+			if (lvl[r][c]==entity){
+				px = r;
+				py = c;
+			}
+		}
+	}
+}
+
+void shift_entity(int positionR, int positionC, char skin){								
+	HANDLE handle = GetStdHandle ( STD_OUTPUT_HANDLE );
+	COORD coordinate = {positionC, positionR};
+	DWORD cose;
+	FillConsoleOutputCharacter ( handle, skin ,1, coordinate, &cose);
+}
+		
+void delate_entity(int positionR,int positionC){	
+	HANDLE handle = GetStdHandle ( STD_OUTPUT_HANDLE );
+	COORD coordinate = {positionC,positionR};
+	DWORD cose;
+	FillConsoleOutputCharacter ( handle,' ',1, coordinate, &cose);
+}
+
+void print_map(char map[][100], int R, int C){
+	for (int r=0; r<R; r++){
+		for (int c=0; c<C; c++){
+			cout << map[r][c];
+		}
+		cout << endl;
+	}
+}
+
+void shift_number(int height, char skin, int positionC){								
+	HANDLE handle = GetStdHandle ( STD_OUTPUT_HANDLE );
+	COORD coordinate = {positionC, (height + 2)};
+	DWORD cose;
+	FillConsoleOutputCharacter ( handle, skin ,1, coordinate, &cose);
+}
+		
+void delate_number(int height, int positionC){	
+	HANDLE handle = GetStdHandle ( STD_OUTPUT_HANDLE );
+	COORD coordinate = {positionC, (height + 2)};
+	DWORD cose;
+	FillConsoleOutputCharacter ( handle,' ',1, coordinate, &cose);
+}
 
 struct weapon{
 	string name;
@@ -39,12 +159,12 @@ weapon shop_get_weapon(int x, int y){
 		if(y == 1){weapon spada_rotta={"Spada Rotta", 3, 30, 15, 5,"E' una spada rotta"};return spada_rotta;};
 		if(y == 2){weapon bastone={"Bastone", 2, 20, 10, 3,"E' un bastone di legno"};return bastone;};
 		if(y == 3){weapon frusta={"Frusta", 2, 40, 15, 5,"E' una frusta"};return frusta;};
-		if(y == 4){weapon wahaika={"Wahaika", 2.5, 40, 20, 7,"Gli antichi Maori utilizzavano lo Wahaika come pugnale, sebbene assomigli e venga considerata una clava. ÃƒË† intagliato nel legno, oppure raramente nelle ossa di balena. "};return wahaika;};
+		if(y == 4){weapon wahaika={"Wahaika", 2.5, 40, 20, 7,"Gli antichi Maori utilizzavano lo Wahaika come pugnale, sebbene assomigli e venga considerata una clava. Ãˆ intagliato nel legno, oppure raramente nelle ossa di balena. "};return wahaika;};
 		if(y == 5){weapon manganello={"Manganello", 5, 50, 20, 8,"E' un'arma contundente"};return manganello;};
 		if(y == 6){weapon macana={"Makana", 6.5, 60, 30, 10,"E' un'arma simile ad una spada, fatta in legno, ma sufficientemente affilata da essere pericolosa"};return macana;};
-		if(y == 7){weapon kriss={"Kriss", 6, 50, 25, 8,"Il kriss ÃƒÂ¨ un tipico coltello-pugnale malese,con lama a biscia "};return kriss;};
-		if(y == 8){weapon cinquedea={"Cinquedea", 6, 60, 20, 9,"La Cinquedea,ÃƒÂ¨ un'arma bianca manesca del tipo spada corta originatasi nel XV secolo in area veneta"};return cinquedea;};
-		if(y == 9){weapon tonfa={"Tonfa", 5, 50, 15, 7, "l tonfa ÃƒÂ¨ un'arma tradizionale delle arti marziali, ÃƒË† composto da una impugnatura lunga 12 cm, e da un corpo di lunghezza variabile dai 50 ai 60 cm circa."};return tonfa;};
+		if(y == 7){weapon kriss={"Kriss", 6, 50, 25, 8,"Il kriss Ã¨ un tipico coltello-pugnale malese,con lama a biscia "};return kriss;};
+		if(y == 8){weapon cinquedea={"Cinquedea", 6, 60, 20, 9,"La Cinquedea,Ã¨ un'arma bianca manesca del tipo spada corta originatasi nel XV secolo in area veneta"};return cinquedea;};
+		if(y == 9){weapon tonfa={"Tonfa", 5, 50, 15, 7, "l tonfa Ã¨ un'arma tradizionale delle arti marziali, Ãˆ composto da una impugnatura lunga 12 cm, e da un corpo di lunghezza variabile dai 50 ai 60 cm circa."};return tonfa;};
 		if(y == 10){weapon tirapugni={"Tirapugni", 8, 80, 40, 15, "Viene utilizzato sferrando pugni"};return tirapugni;};
 	}
 	if (x == 2){
@@ -54,43 +174,43 @@ weapon shop_get_weapon(int x, int y){
 		if(y == 3){weapon tridente={"Tridente", 11, 90, 50, 15, "Tridente, arma consigliata per attaccare a distanze di sicurezza"};return tridente;};
 		if(y == 4){weapon pugnale={"Pugnale", 9, 55, 20, 5,"Usalo per uccidere silenziosamente i nemici"};return pugnale;};
 		if(y == 5){weapon picca={"Picca", 11, 150, 50, 15,"Fatta per durare"};return picca;};
-		if(y == 6){weapon dagaarondelle={"Daga a rondelle", 10, 90, 20, 4,"Una daga a rondelle ÃƒÂ¨ un pugnale originario dell'Europa del tardo medioevomolto diffuso e utilizzato da una gran varietÃƒÂ  di persone dai mercanti ai cavalieri."};return dagaarondelle;};
+		if(y == 6){weapon dagaarondelle={"Daga a rondelle", 10, 90, 20, 4,"Una daga a rondelle Ã¨ un pugnale originario dell'Europa del tardo medioevomolto diffuso e utilizzato da una gran varietÃ  di persone dai mercanti ai cavalieri."};return dagaarondelle;};
 		if(y == 7){weapon lancia={"Lancia", 10, 100, 15, 3,"Una lancia in legno, non troppo resistente, ma meglio di niente"};return lancia;};
-		if(y == 8){weapon ken={"Ken", 13, 120, 55, 50, "Ken ÃƒÂ¨ il vocabologiapponese che identifica la spada a lama diritta, affilata su ambo i lati"};return ken;};
-		if(y == 9){weapon goloko={"Goloko", 11, 100, 45, 10, "Il golok ÃƒÂ¨ un'arma da taglio simile ad un machete che puÃƒÂ² essere usato sia per lavori agricoli che come arma"};return goloko;};
-		if(y == 10){weapon hakapik={"Hakapik", 12, 110, 40, 5, "L'hakapik ÃƒÂ¨ un bastone di invenzione norvegese usato nella caccia alla foca"};return hakapik;};
+		if(y == 8){weapon ken={"Ken", 13, 120, 55, 50, "Ken Ã¨ il vocabologiapponese che identifica la spada a lama diritta, affilata su ambo i lati"};return ken;};
+		if(y == 9){weapon goloko={"Goloko", 11, 100, 45, 10, "Il golok Ã¨ un'arma da taglio simile ad un machete che puÃ² essere usato sia per lavori agricoli che come arma"};return goloko;};
+		if(y == 10){weapon hakapik={"Hakapik", 12, 110, 40, 5, "L'hakapik Ã¨ un bastone di invenzione norvegese usato nella caccia alla foca"};return hakapik;};
 	}
 	if (x == 3){
 		/*-----DAMAGE WEAPONS-----*/
-		if(y == 1){weapon katana={"Katana", 17, 220, 80, 20, "La katana ÃƒÂ¨ la spada giapponese per antonomasia"};return katana;};
-		if(y == 2){weapon alabarda={"Alabarda", 18, 200, 80, 18, "L'alabarda ÃƒÂ¨ l'arma inastata per antonomasia, a punta, tagliente da entrambi i lati."};return alabarda;};
-		if(y == 3){weapon azza={"Azza", 20, 250, 90, 25,"L'azza ÃƒÂ¨ un'arma inastata diffusasi in Europa al volgere del Medioevo normalmente utilizzata dai soldati di fanteria e particolarmente adatta al combattimento contro avversari in armatura."};return azza;};
-		if(y == 4){weapon zweihander={"Zweihander", 21, 210, 90, 25, "La zweihÃƒÂ¤nder[ ÃƒÂ¨ un tipo di spada a due mani sviluppatasi nel corso del Rinascimento in Italia e nelle terre gravitanti intorno al Sacro Romano Impero Germanico."};return zweihander;};
+		if(y == 1){weapon katana={"Katana", 17, 220, 80, 20, "La katana Ã¨ la spada giapponese per antonomasia"};return katana;};
+		if(y == 2){weapon alabarda={"Alabarda", 18, 200, 80, 18, "L'alabarda Ã¨ l'arma inastata per antonomasia, a punta, tagliente da entrambi i lati."};return alabarda;};
+		if(y == 3){weapon azza={"Azza", 20, 250, 90, 25,"L'azza Ã¨ un'arma inastata diffusasi in Europa al volgere del Medioevo normalmente utilizzata dai soldati di fanteria e particolarmente adatta al combattimento contro avversari in armatura."};return azza;};
+		if(y == 4){weapon zweihander={"Zweihander", 21, 210, 90, 25, "La zweihÃ¤nder[ Ã¨ un tipo di spada a due mani sviluppatasi nel corso del Rinascimento in Italia e nelle terre gravitanti intorno al Sacro Romano Impero Germanico."};return zweihander;};
 		if(y == 5){weapon martellodaguerra={"Martello da Guerra", 23, 150, 95, 20, "E' un martello molto pesante per sfondare crani"};return martellodaguerra;};
-		if(y == 6){weapon tetsubo={"Tetsubo", 23, 230, 100, 25, "Il tetsubo ÃƒÂ¨ un'arma solitamente di legno molto simile a una Mazza da baseball, con l'eccezione che nella parte finale della mazza sono incastonate punte di metallo che possono essere di ferro, di rame " };return tetsubo;};
+		if(y == 6){weapon tetsubo={"Tetsubo", 23, 230, 100, 25, "Il tetsubo Ã¨ un'arma solitamente di legno molto simile a una Mazza da baseball, con l'eccezione che nella parte finale della mazza sono incastonate punte di metallo che possono essere di ferro, di rame " };return tetsubo;};
 		if(y == 7){weapon sarissa={"Sarissa", 17, 180, 70, 15, "La sarissa era la picca usata dai temuti guerrieri del regno di MacedoniaLunga fino a 6-7 metri, aveva corpo in legno di corniolo di grande diametro, una grossa punta di ferroe un tallone anch'essometallico."};return sarissa;};
 		if(y == 8){weapon berdica={"Berdica", 18, 190, 85, 15, "La berdica era un'arma inastata in uso in Europa Orientale. Era una g di circa un metro e mezzo e lama di scure a mezzaluna" };return berdica;};
-		if(y == 9){weapon falcione={"Falcione", 19, 190, 90, 14,"Il falcione ÃƒÂ¨ una spada ad una mano con tagliente monofilare diffusasi in Europa durante il Medioevo."};return falcione;};
-		if(y == 10){weapon corsesca={"Corsesca", 17, 230, 85, 14, "La corsesca ÃƒÂ¨ un'arma inastata in uso negli eserciti europei durante il Medioevo, con asta di lunghezza compresa tra gli 1,8 ed i 2,5 metri e testa in metallo"};return corsesca;};
+		if(y == 9){weapon falcione={"Falcione", 19, 190, 90, 14,"Il falcione Ã¨ una spada ad una mano con tagliente monofilare diffusasi in Europa durante il Medioevo."};return falcione;};
+		if(y == 10){weapon corsesca={"Corsesca", 17, 230, 85, 14, "La corsesca Ã¨ un'arma inastata in uso negli eserciti europei durante il Medioevo, con asta di lunghezza compresa tra gli 1,8 ed i 2,5 metri e testa in metallo"};return corsesca;};
 	}
 	if (x == 4){
 		/*-----DUNGEON WEAPONS-----*/
 		if(y == 1){weapon mazzaferrata={"Mazza Ferrata", 25, 250, 100, 27, "E' una mazza fatta di ferro"};return mazzaferrata;};
 		if(y == 2){weapon asciabipenne={"Ascia Bipenne", 23, 270, 105, 27, "Ascia a doppia lama"};return asciabipenne;};
 		if(y == 3){weapon martello={"Martello", 27, 180, 110, 28, "Martello da lavoro, molto potente ma poco resistente"};return martello;};
-		if(y == 4){weapon mazzafrusto={"Mazzafrusto", 24, 280, 100, 20, "Il mazzafrusto ÃƒÂ¨ un'arma bianca di origine contadina." };return mazzafrusto;};
-		if(y == 5){weapon claymore={"Claymore", 25, 300, 120, 35, "Il termine in lingua inglese Claymore, indicadi spada usate dai guerrieri della Scozia tra Medioevo ed EtÃƒÂ  Moderna: 1-Claidheamh dha lamh (spada a due mani). 2-Claidheamh mÃƒÂ²r (grande spada)"};return claymore;};
-		if(y == 6){weapon dirk={"Dirk", 23, 250, 107, 24, "Il dirk ÃƒÂ¨ un lungo pugnale di origine scozzese con la lama a un filo."};return dirk;};
-		if(y == 7){weapon kusarigama={"Kusarigama", 26, 275, 110, 23, "Il kusarigama ÃƒÂ¨ un'arma giapponeseutilizzata sia nel combattimento adistanza che nel corpo a corpo"};return kusarigama;};
-		if(y == 8){weapon sai={"Sai", 23, 200, 90, 19, " La sua forma ÃƒÂ¨ essenzialmente composta da una sorta di bastone arrotondato e appuntito, con due lunghe proiezioni non affilate attaccate al manico"};return sai;};
+		if(y == 4){weapon mazzafrusto={"Mazzafrusto", 24, 280, 100, 20, "Il mazzafrusto Ã¨ un'arma bianca di origine contadina." };return mazzafrusto;};
+		if(y == 5){weapon claymore={"Claymore", 25, 300, 120, 35, "Il termine in lingua inglese Claymore, indicadi spada usate dai guerrieri della Scozia tra Medioevo ed EtÃ  Moderna: 1-Claidheamh dha lamh (spada a due mani). 2-Claidheamh mÃ²r (grande spada)"};return claymore;};
+		if(y == 6){weapon dirk={"Dirk", 23, 250, 107, 24, "Il dirk Ã¨ un lungo pugnale di origine scozzese con la lama a un filo."};return dirk;};
+		if(y == 7){weapon kusarigama={"Kusarigama", 26, 275, 110, 23, "Il kusarigama Ã¨ un'arma giapponeseutilizzata sia nel combattimento adistanza che nel corpo a corpo"};return kusarigama;};
+		if(y == 8){weapon sai={"Sai", 23, 200, 90, 19, " La sua forma Ã¨ essenzialmente composta da una sorta di bastone arrotondato e appuntito, con due lunghe proiezioni non affilate attaccate al manico"};return sai;};
 		if(y == 9){weapon falce={"Falce", 21, 245, 100, 21, "Falce da guerra indica una qualsiasi tipologia di arma bianca, manesca o inastata, ottenuta partendo dalla lama di una falce o di un falcetto." };return falce;};
-		if(y == 10){weapon mazzapesante={"Mazza Pesante", 25.5, 230, 110, 28, "Si tratta di una mazza molto pesante, il materiale di cui ÃƒÂ¨ composta non ÃƒÂ¨ noto."};return mazzapesante;};
+		if(y == 10){weapon mazzapesante={"Mazza Pesante", 25.5, 230, 110, 28, "Si tratta di una mazza molto pesante, il materiale di cui Ã¨ composta non Ã¨ noto."};return mazzapesante;};
 	}
 	if (x == 5){
 		/*-----SPECIAL WEAPONS-----*/
 		if(y == 1){weapon none={"No Weapon", 0, 0, 0, 0,"none"};return none;};
-		if(y == 2){weapon sodegarami={"Sodegarami", 24, 350, 200, 100, "Il sodegarami ÃƒÂ¨ un'arma giapponese utilizzata soprattutto dalle forze di polizia samurai e per auto-difesa nel Giappone feudale."};return sodegarami;};
-		if(y == 3){weapon romfaia={"Romfaia", 35, 350, 300, 200, "ÃƒË† costituita da una lama ricurva affilata sul lato interno e si poteva utilizzare sia con una impugnatura a una mano che con una a due mani. Il danno che procurava era inflitto con un movimento a strappo e poteva mutilare un arto e decapitare l'avversario anche con un solo colpo."};return romfaia;};
+		if(y == 2){weapon sodegarami={"Sodegarami", 24, 350, 200, 100, "Il sodegarami Ã¨ un'arma giapponese utilizzata soprattutto dalle forze di polizia samurai e per auto-difesa nel Giappone feudale."};return sodegarami;};
+		if(y == 3){weapon romfaia={"Romfaia", 35, 350, 300, 200, "Ãˆ costituita da una lama ricurva affilata sul lato interno e si poteva utilizzare sia con una impugnatura a una mano che con una a due mani. Il danno che procurava era inflitto con un movimento a strappo e poteva mutilare un arto e decapitare l'avversario anche con un solo colpo."};return romfaia;};
 	}
 }
 
@@ -493,11 +613,11 @@ double enemy_lose_life(entity &entita_subire, player &entita_infliggere, int use
 	}
 }
 
-double player_lose_life(player &entita_subire, entity &entita_infliggere, int use_critic){
+double player_lose_life(player &entita_subire, entity &entita_infliggere, int use_critic, int height){
 	double life = entita_subire.getLife();
 	double danno = getTotalDamage(entita_infliggere, entita_infliggere.getWeapon()) - getTotalArmor(entita_subire, entita_subire.getWearArmor());
 	if( danno > 0.0){
-		life -= danno;
+		life = life - danno;
 		double durability_lost = random_durability();
 		weapon x = entita_infliggere.getWeapon();
 		x.durability -= x.durability * durability_lost;
@@ -518,6 +638,12 @@ double player_lose_life(player &entita_subire, entity &entita_infliggere, int us
 				cout << "ERRORE CALCOLO CRITICO CASE DEFAULT" << endl;
 				system("pause");
 		}
+		char number = (int(life/100));
+		char number1 = (int(life/10)+48);
+		char number2 = (int(life)%10)+48;
+		shift_number(height, number, 6);
+		shift_number(height, number1, 7);
+		shift_number(height, number2, 8);
 		return life;
 	}else{
 		return life;
@@ -596,7 +722,7 @@ player pg_set(player x){
 	x.setDamage(5);
 	x.setExp(5);
 	x.setHunger(5);
-	x.setLife(5);
+	x.setLife(100);
 	x.setMoney(5);
 	x.setWeapon(falce);
 	x.setWearArmor(test);
@@ -616,37 +742,63 @@ entity bot_set(entity x){
 	return x;
 }
 
-void test(){
-	player pg;
-	entity bot;
-	char x;
-	cin >> x;
+void test(char button, player pg){
 	string inventory[10][10];
-	if(x == 'e'){
+	if(button == 'e'){
 		use_inventory(inventory);
 	}
 	
-	pg = pg_set(pg);
-	bot = bot_set(bot);
+	//cout << "La vita rimasta del bot e' " << enemy_lose_life(bot, pg, critic_probability(pg)) << endl;
 	
-	cout << "La vita rimasta del bot e' " << enemy_lose_life(bot, pg, critic_probability(pg)) << endl;
-	cout << "La vita rimasta del pg e' " << player_lose_life(pg, bot, critic_probability(bot)) << endl;
+	if(button == 'q' || button == 'Q'){
+		open_shop(pg);
+	}
 	
-	system("pause");
 	
-	open_shop(pg);
 	
 	
 }
 
 int main(int argc, char** argv) {
+	control control_you;
 	system("color 0B");
+	player pg;
+	entity bot;
+	pg_set(pg);
+	bot_set(bot);
+	maps map_level;	
+	int rows=0;
+	int cols=0;
+	int pc=0;
+	int pr=0;
+	char lvl[50][100];
 	char name[9];
-	char map[100][100];
-	player_name(name);
-	test();
+	player_name(name);	
 	system("cls");
-	set_map(map);
-	system("pause");
+	bool hit = false;
+	map_level.choose_map(lvl);
+	map_level.size(lvl, map_level.c, rows, cols);
+	map_level.cols=cols;
+	map_level.rows=rows;
+	control_you.position(lvl, map_level.rows, map_level.cols, map_level.y, pr, pc);
+	control_you.pR=pr;
+	control_you.pC=pc;
+	print_map(lvl, map_level.rows, map_level.cols);
+	cout << endl << endl << "Vita: " << player_lose_life(pg, bot, critic_probability(bot), map_level.rows) << endl;
+	do{
+		control_you.button=get_button();
+		test(control_you.button, pg);
+		lvl[control_you.pR][control_you.pC] = ' ';
+		delate_entity(control_you.pR, control_you.pC);
+		mov(control_you.pR, control_you.pC, control_you.button);
+		hit = control_you.enemy(lvl, map_level.cols, map_level.e);
+		control_you.wall(lvl, map_level.cols,map_level.w);
+		lvl[control_you.pR][control_you.pC] = map_level.y;
+		player_lose_life(pg, bot, critic_probability(bot), map_level.rows);
+		if(hit == true){
+			player_lose_life(pg, bot, critic_probability(bot), map_level.rows);
+		}
+		shift_entity(control_you.pR, control_you.pC, map_level.y);
+	}while(3<4);
 	return 0;
 }
