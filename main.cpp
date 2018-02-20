@@ -236,7 +236,7 @@ double total_defense(double armorbody, armor wear_armor){
 
 class entity{
 	protected:
-		double life = 0;
+		double life;
 		double damage = 0;
 		double armorbody = 0;
 		double critic = 0;
@@ -715,7 +715,7 @@ void use_inventory(string inventory[][10]){
 	
 }
 
-player pg_set(player x){
+player pg_set(player &x){
 	weapon falce = shop_get_weapon(1,2);
 	armor test = shop_get_armor(1,2);
 	x.setArmor(5);
@@ -731,7 +731,7 @@ player pg_set(player x){
 	return x;	
 }
 
-entity bot_set(entity x){
+entity bot_set(entity &x){
 	weapon falce = shop_get_weapon(1,2);
 	armor test = shop_get_armor(1,2);
 	x.setArmor(5);
@@ -785,7 +785,7 @@ int main(int argc, char** argv) {
 	control_you.pR=pr;
 	control_you.pC=pc;
 	print_map(lvl, map_level.rows, map_level.cols);
-	cout << endl << endl << "Vita: " << player_lose_life(pg, bot, critic_probability(bot), map_level.rows) << endl;
+	cout << endl << endl << "Vita: " << pg.getLife() << endl;
 	do{
 		control_you.button=get_button();
 		test(control_you.button, pg);
@@ -796,6 +796,7 @@ int main(int argc, char** argv) {
 		control_you.wall(lvl, map_level.cols,map_level.w);
 		lvl[control_you.pR][control_you.pC] = map_level.y;
 		player_lose_life(pg, bot, critic_probability(bot), map_level.rows);
+		cout << hit;
 		if(hit == true){
 			player_lose_life(pg, bot, critic_probability(bot), map_level.rows);
 		}
