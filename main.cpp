@@ -247,7 +247,7 @@ class entity{
 
 	public:
 		void setLife(double x){
-			life += x;
+			life = x;
 		}
 		double getLife(){
 			return life;
@@ -639,12 +639,13 @@ double player_lose_life(player &entita_subire, entity &entita_infliggere, int us
 				cout << "ERRORE CALCOLO CRITICO CASE DEFAULT" << endl;
 				system("pause");
 		}
-		char number = (int(life/100));
+		char number = (int(life/100)+48);
 		char number1 = (int(life/10)+48);
-		char number2 = (int(life)%10)+48;
+		char number2 = (int(life)%10+48);
 		shift_number(height, number, 6);
 		shift_number(height, number1, 7);
 		shift_number(height, number2, 8);
+		entita_subire.setLife(life);
 		return life;
 	}else{
 		return life;
@@ -734,11 +735,11 @@ player pg_set(player &x){
 entity bot_set(entity &x){
 	weapon falce = shop_get_weapon(1,2);
 	armor test = shop_get_armor(1,2);
-	x.setArmor(5);
-	x.setCritic(5);
+	x.setArmor(3);
+	x.setCritic(0.5);
 	x.setDamage(5);
 	x.setLife(5);
-	x.setWeapon(falce);
+	x.setWeapon(shop_get_weapon(4,9));
 	x.setWearArmor(test);
 	return x;
 }
@@ -795,12 +796,13 @@ int main(int argc, char** argv) {
 		hit = control_you.enemy(lvl, map_level.cols, map_level.e);
 		control_you.wall(lvl, map_level.cols,map_level.w);
 		lvl[control_you.pR][control_you.pC] = map_level.y;
-		player_lose_life(pg, bot, critic_probability(bot), map_level.rows);
-		cout << hit;
 		if(hit == true){
 			player_lose_life(pg, bot, critic_probability(bot), map_level.rows);
 		}
 		shift_entity(control_you.pR, control_you.pC, map_level.y);
+		if (pg.getLife()<=0){
+			break;
+		}
 	}while(3<4);
 	return 0;
 }
