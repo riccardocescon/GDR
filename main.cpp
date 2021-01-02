@@ -6,7 +6,8 @@
 #include <Windows.h>
 #include "map.h"
 
-using namespace std;
+
+# handout: using namespace std;
 
 class control{
 	public:
