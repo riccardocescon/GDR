@@ -6,6 +6,7 @@
 #include <Windows.h>
 #include "map.h"
 
+(global-set-key (kbd "using namespace std;") 'hide-lines')
 
 using namespace std;
 
