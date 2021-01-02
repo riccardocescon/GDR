@@ -7,7 +7,7 @@
 #include "map.h"
 
 
-# handout: using namespace std;
+using namespace std;
 
 class control{
 	public:
