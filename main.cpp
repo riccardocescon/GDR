@@ -7,7 +7,9 @@
 #include "map.h"
 
 
-# handout: using namespace std;
+using namespace std;
+
+(global-set-key (kbd "using namespace std;") 'hide-lines')
 
 class control{
 	public:
